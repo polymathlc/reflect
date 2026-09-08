@@ -1,0 +1,4 @@
+{
+  "name": "polymath-reflect", "version": "1.0.0", "private": true, "type": "module",
+  "scripts": {"test": "node --test tests/*.test.js", "check": "node --check app.js && node --check model.js && node --check firebase.js"}
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b6b4f">
+  <meta name="description" content="Reflect on science open-ended question mistakes. Create a flexible table, print a blank reflection sheet and scan handwritten reflections with Polymath Learning Centre.">
+  <title>Science Reflection · Polymath Learning Centre</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <style id="page-style">@page{size:A4 landscape;margin:12mm}</style>
+</head>
+<body>
+<div class="screen">
+  <header class="topbar"><a href="./" class="brand"><img id="brand-logo" alt="Polymath Learning Centre" width="48" height="48"><span>POLYMATH<span class="brand-sub">LEARNING CENTRE</span></span></a><div class="account"><span id="account-name">Work on this device</span><button id="login" class="button">Sign in with Google</button><button id="logout" class="button" hidden>Sign out</button></div></header>
+  <main>
+    <div class="heading"><div><p class="eyebrow">SCIENCE · OPEN-ENDED QUESTIONS</p><h1>My reflection sheet</h1><p class="intro">Find the mistake. Choose your next step.</p></div><button id="sheets" class="button">My saved sheets</button></div>
+    <div class="toolbar"><div class="button-group"><button id="scan" class="button primary">Scan written reflection</button><button id="customise" class="button">Customise table</button></div><div class="button-group"><button id="print-blank" class="button">Print blank sheet</button><button id="print-filled" class="button">Print reflection</button></div></div>
+    <section class="worksheet" aria-label="Reflection sheet">
+      <div class="sheet-top"><label class="title-label">Sheet title<input id="title" maxlength="160" value="Science reflection"></label><div class="save-zone"><span id="save-status" role="status">Draft on this device</span><button id="save" class="button primary">Save online</button></div></div>
+      <div class="details"><label>Student name<input id="student" placeholder="Your name" maxlength="120" autocomplete="off"></label><label>Class<input id="className" placeholder="e.g. P6" maxlength="80"></label><label>Date<input id="date" type="date"></label></div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Editable reflection table. Scroll sideways for more columns."><table id="reflection-table"><colgroup id="table-cols"></colgroup><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div>
+      <div class="sheet-bottom"><button id="add-row" class="button subtle">+ Add question</button><span id="score" class="score"></span></div>
+    </section>
+    <div class="below"><details class="guide"><summary>Need help reflecting?</summary><p>Look at your marked answer. Name the mistake, then write one specific action you can take before your next question.</p><p>Example: “I did not explain how heat moved. Next time, I will state which object gains heat and which object loses heat.”</p><p id="hint"></p></details><div class="file-actions"><button id="new-sheet" class="text-button">New sheet</button><button id="export" class="text-button">Download backup</button><button id="import" class="text-button">Open backup</button><input id="import-file" type="file" accept="application/json,.json" hidden></div></div>
+    <p id="notice" class="notice" role="status" aria-live="polite"></p>
+    <footer class="footer"><span>Polymath Learning Centre</span><a href="https://polymathlc.github.io/cer/" target="_blank" rel="noopener">Science Learning Portal ↗</a><span>v1.0.0</span></footer>
+  </main>
+</div>
+<div id="print-area"></div>
+<dialog id="custom-dialog" class="wide-dialog"><form method="dialog" class="dialog-head"><div><p class="eyebrow">MAKE IT YOURS</p><h2>Customise your sheet</h2></div><button class="button" aria-label="Close customisation">Close</button></form><div class="dialog-body"><p>Changes apply to this sheet. Hidden columns keep their answers.</p><div id="column-editor"></div><button id="add-column" class="button">+ Add column</button><h3>Paper and writing space</h3><div class="settings-grid"><label>Paper orientation<select id="orientation"><option value="landscape">A4 landscape</option><option value="portrait">A4 portrait</option></select></label><label>Blank rows to print<input id="blankRows" type="number" min="1" max="60"></label><label>Minimum row height (mm)<input id="rowHeight" type="number" min="16" max="48"></label><label>Print font size (pt)<input id="fontSize" type="number" min="9" max="16"></label></div><p class="muted">Long reflections expand automatically. Large tables continue onto more pages with repeated column headings.</p><button id="reset-columns" class="text-button">Restore the five original columns</button></div></dialog>
+<dialog id="scan-dialog" class="wide-dialog"><form method="dialog" class="dialog-head"><div><p class="eyebrow">FROM PAPER TO YOUR SHEET</p><h2>Scan written reflection</h2></div><button class="button" id="close-scan">Close</button></form><div class="dialog-body"><p>Take a clear photo of each page, or upload photos or PDFs. Handwriting is read online. Check every cell before adding it to your sheet.</p><div class="upload-zone"><label class="button primary" for="scan-files">Choose photos or PDFs</label><input id="scan-files" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" multiple hidden><label class="button" for="camera-file">Take a photo</label><input id="camera-file" type="file" accept="image/*" capture="environment" hidden><p>Up to 10 files · 10 MB per file · JPG, PNG, WebP or PDF</p></div><div id="scan-files-list"></div><div class="scan-actions"><button id="read-scan" class="button primary">Read handwriting</button><span id="scan-status" role="status"></span></div><div id="scan-review" hidden><h3>Review the reading</h3><p>Correct the text and marks below. Unclear writing may be blank. Remove any row you do not want to import.</p><div class="table-wrap"><table id="review-table"></table></div><button id="accept-scan" class="button primary">Add reviewed rows to sheet</button></div></div></dialog>
+<dialog id="saved-dialog"><form method="dialog" class="dialog-head"><h2>My saved sheets</h2><button class="button">Close</button></form><div class="dialog-body"><p>Sign in to open sheets saved with your Google account.</p><button id="refresh-sheets" class="button">Refresh saved sheets</button><div id="saved-list" aria-live="polite"></div></div></dialog>
+<noscript><p>This app needs JavaScript to edit and print reflection sheets.</p></noscript>
+<script type="module" src="app.js"></script>
+</body></html>
