@@ -1,0 +1,22 @@
+// ADDITIVE FRAGMENT ONLY. Insert inside the LIVE service firebase.storage
+// match /b/{bucket}/o block. Preserve all other apps' rules.
+// Check overlapping catch-all grants before deployment: allow rules are ORed.
+// Uses rules_version = '2' to support folder listing.
+match /reflect/{userId}/sheets/{fileName} {
+  allow read: if request.auth != null && request.auth.uid == userId;
+  allow create, update: if request.auth != null
+    && request.auth.uid == userId
+    && fileName.matches('[A-Za-z0-9_-]+[.]json')
+    && request.resource.size < 2 * 1024 * 1024
+    && request.resource.contentType == 'application/json';
+  allow delete: if request.auth != null && request.auth.uid == userId;
+}
+match /reflect/{userId}/scans/{fileName} {
+  allow read: if request.auth != null && request.auth.uid == userId;
+  allow create, update: if request.auth != null
+    && request.auth.uid == userId
+    && fileName.matches('[a-f0-9]{64}[.](jpg|png|webp|pdf)')
+    && request.resource.size <= 10 * 1024 * 1024
+    && request.resource.contentType.matches('image/(jpeg|png|webp)|application/pdf');
+  allow delete: if request.auth != null && request.auth.uid == userId;
+}
